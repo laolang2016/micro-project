@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * 开始场景
  */
 @Slf4j
-public class LaunchScene extends BaseScene implements Runnable{
+public class LaunchScene extends BaseScene implements Runnable {
 
     /**
      * 选中的菜单索引
@@ -28,6 +28,8 @@ public class LaunchScene extends BaseScene implements Runnable{
     @Setter
     @Getter
     private Integer menuActiveIndex = 0;
+
+    private boolean active = true;
 
     public LaunchScene() {
         super();
@@ -149,10 +151,19 @@ public class LaunchScene extends BaseScene implements Runnable{
     @SneakyThrows
     @Override
     public void run() {
-        while (true){
+        while (active) {
             repaint();
             Thread.sleep(GameConsts.DELTA_TIME);
         }
+    }
+
+    private void doMenuAction() {
+        switch (menuActiveIndex) {
+            case 0: {
+                GameUtil.INSTANCE.toScene(GameStateEnum.PLAYING);
+            }
+        }
+        active = false;
     }
 
     /**
@@ -180,11 +191,13 @@ public class LaunchScene extends BaseScene implements Runnable{
                 }
                 case KeyEvent.VK_ENTER:
                 case KeyEvent.VK_J: {
-                    log.info("action");
+                    scene.doMenuAction();
                     break;
                 }
             }
             scene.setMenuActiveIndex(index);
         }
     }
+
+
 }

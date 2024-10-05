@@ -25,16 +25,25 @@ public class DirectorPanel extends JPanel {
         setBackground(GameConsts.DEFAULT_BACKGROUND);
     }
 
+    /**
+     * 替换场景
+     */
     public void replaceScene(GameStateEnum gameState) {
-        if (matchScene(gameState)) {
+        if (newScene(gameState)) {
             return;
         }
-
+        if (Objects.nonNull(scene)) {
+            scene = null;
+        }
         setScene(GameUtil.INSTANCE.getScene(gameState));
         add(scene, BorderLayout.CENTER);
+        repaint();
     }
 
-    private boolean matchScene(GameStateEnum gameState) {
+    /**
+     * 当前场景是否需要替换
+     */
+    private boolean newScene(GameStateEnum gameState) {
         if (Objects.isNull(scene)) {
             return false;
         }
@@ -43,6 +52,11 @@ public class DirectorPanel extends JPanel {
 
     private void setScene(BaseScene scene) {
         this.scene = scene;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        update(g);
     }
 
     @Override

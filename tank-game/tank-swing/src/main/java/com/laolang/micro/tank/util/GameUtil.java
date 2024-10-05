@@ -41,6 +41,7 @@ public enum GameUtil {
     }
 
     private GameStateEnum gameState = GameStateEnum.LAUNCH;
+    // private GameStateEnum gameState = GameStateEnum.PLAYING;
 
     private final List<MenuModel> menuList = new ArrayList<>();
 
@@ -58,6 +59,7 @@ public enum GameUtil {
     }
 
     public void toScene(GameStateEnum gameState) {
+        this.gameState = gameState;
         directorPanel.replaceScene(gameState);
     }
 

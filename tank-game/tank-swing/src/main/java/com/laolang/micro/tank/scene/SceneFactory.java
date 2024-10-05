@@ -17,6 +17,10 @@ public class SceneFactory {
                 scene = new LaunchScene();
                 break;
             }
+            case "playing": {
+                scene = new GameScene();
+                break;
+            }
             default: {
                 log.error("未知的场景, 游戏退出");
             }
