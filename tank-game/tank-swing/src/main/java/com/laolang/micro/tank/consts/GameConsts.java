@@ -36,6 +36,7 @@ public class GameConsts {
     public static final String MENU_HELP = "游戏帮助";
     public static final String MENU_ABOUT = "游戏关于";
     public static final String MENU_EXIT = "退出游戏";
+    public static final String MENU_TIP_TEXT = "按 W/S 或者方向键上下选择, 按 J 或 Enter 进入菜单";
 
     /**
      * 菜单字体
