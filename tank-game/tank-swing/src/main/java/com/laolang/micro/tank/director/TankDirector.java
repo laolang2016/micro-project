@@ -13,15 +13,10 @@ public class TankDirector extends JFrame {
     }
 
     private void init() {
-        setSize(800, 600);
+        setSize(768, 720);
         setResizable(false);
         setTitle("坦克大战-swig 版");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    @Override
-    public void show() {
-        super.show();
     }
 }
