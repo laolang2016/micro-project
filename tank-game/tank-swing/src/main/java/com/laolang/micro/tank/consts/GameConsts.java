@@ -24,6 +24,11 @@ public class GameConsts {
     public static final Integer GAME_HEIGHT = 720;
 
     /**
+     * 刷新时间间隔
+     */
+    public static final long DELTA_TIME = 30;
+
+    /**
      * 默认背景色
      */
     public static final Color DEFAULT_BACKGROUND = Color.black;

@@ -13,13 +13,14 @@ import java.awt.event.KeyEvent;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * 开始场景
  */
 @Slf4j
-public class LaunchScene extends BaseScene {
+public class LaunchScene extends BaseScene implements Runnable{
 
     /**
      * 选中的菜单索引
@@ -33,6 +34,7 @@ public class LaunchScene extends BaseScene {
         setFocusable(true);
         requestFocusInWindow();
         addKeyListener(new LaunchSceneKeyAdapter(this));
+        new Thread(this).start();
     }
 
     @Override
@@ -76,7 +78,6 @@ public class LaunchScene extends BaseScene {
         int firstY = getFirstMenuDirection(textHeight, spaceHeight, GameUtil.INSTANCE.getMenuList().size());
         firstY = GameConsts.GAME_HEIGHT / 2 - firstY;
 
-
         for (int i = 0; i < GameUtil.INSTANCE.getMenuList().size(); i++) {
 
             if (i == menuActiveIndex) {
@@ -105,7 +106,7 @@ public class LaunchScene extends BaseScene {
         String text = GameConsts.MENU_TIP_TEXT;
         int textWidth = getTextWidth(g, text);
         int x = (GameConsts.GAME_WIDTH - textWidth) / 2;
-        int y = 30;
+        int y = 60;
         g.drawString(text, x, y);
     }
 
@@ -119,10 +120,6 @@ public class LaunchScene extends BaseScene {
 
     /**
      * 获取文本宽度
-     *
-     * @param g
-     * @param text
-     * @return
      */
     private int getTextWidth(Graphics g, String text) {
         FontMetrics metrics = g.getFontMetrics();
@@ -149,6 +146,18 @@ public class LaunchScene extends BaseScene {
         return halfCount * textHeight + (halfCount - 1) * spaceHeight + spaceHeight / 2;
     }
 
+    @SneakyThrows
+    @Override
+    public void run() {
+        while (true){
+            repaint();
+            Thread.sleep(GameConsts.DELTA_TIME);
+        }
+    }
+
+    /**
+     * 按键监听
+     */
     @Slf4j
     @RequiredArgsConstructor
     static class LaunchSceneKeyAdapter extends KeyAdapter {
@@ -176,7 +185,6 @@ public class LaunchScene extends BaseScene {
                 }
             }
             scene.setMenuActiveIndex(index);
-            scene.repaint();
         }
     }
 }

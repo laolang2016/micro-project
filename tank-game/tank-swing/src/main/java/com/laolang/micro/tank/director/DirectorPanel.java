@@ -32,7 +32,6 @@ public class DirectorPanel extends JPanel {
 
         setScene(GameUtil.INSTANCE.getScene(gameState));
         add(scene, BorderLayout.CENTER);
-        repaint();
     }
 
     private boolean matchScene(GameStateEnum gameState) {
@@ -51,11 +50,5 @@ public class DirectorPanel extends JPanel {
         if (Objects.nonNull(scene)) {
             scene.update(g);
         }
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        update(g);
     }
 }
