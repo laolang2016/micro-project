@@ -9,3 +9,9 @@
 
 [https://github.com/leewyatt/FXGL_Tank/tree/main](https://github.com/leewyatt/FXGL_Tank/tree/main)
 
+## 关卡图
+[FC《坦克大战》1-25关关卡地形图 ](https://www.sohu.com/a/312092565_120099892)
+
+## 在线坦克大战
+[https://www.jxgame.net/](https://www.jxgame.net/)
+
